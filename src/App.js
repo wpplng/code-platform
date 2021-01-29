@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './assets/scss/app.scss';
 import { Container } from 'react-bootstrap';
+import AuthContextProvider from './contexts/AuthContext';
 import Navigation from './components/navigation/Navigation';
 import Login from './components/auth/Login';
 import Logout from './components/auth/Logout';
@@ -13,33 +14,35 @@ import NotFound from './components/NotFound';
 const App = () => {
 	return (
 		<Router>
-			<Navigation />
+			<AuthContextProvider>
+				<Navigation />
 
-			<Container className='py-4'>
-				<Routes>
-					<Route path='/'>
-						<Home />
-					</Route>
+				<Container className='py-4'>
+					<Routes>
+						<Route path='/'>
+							<Home />
+						</Route>
 
-					<Route path='/signup'>
-						<Signup />
-					</Route>
+						<Route path='/signup'>
+							<Signup />
+						</Route>
 
-					<Route path='/login'>
-						<Login />
-					</Route>
+						<Route path='/login'>
+							<Login />
+						</Route>
 
-					<Route path='/logout'>
-						<Logout />
-					</Route>
+						<Route path='/logout'>
+							<Logout />
+						</Route>
 
-					<Route path='/reset-password'>
-						<ResetPassword />
-					</Route>
+						<Route path='/reset-password'>
+							<ResetPassword />
+						</Route>
 
-					<Route path='*' element={<NotFound />} />
-				</Routes>
-			</Container>
+						<Route path='*' element={<NotFound />} />
+					</Routes>
+				</Container>
+			</AuthContextProvider>
 		</Router>
 	);
 };
