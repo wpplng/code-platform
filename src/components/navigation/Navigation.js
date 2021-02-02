@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom';
 const Navigation = () => {
 	return (
 		<>
-			<Navbar bg='dark' variant='dark'>
+			<Navbar id='nav' variant='dark'>
 				<Container>
 					<Link to='/' className='navbar-brand'>
 						Code Platform
@@ -15,7 +15,7 @@ const Navigation = () => {
 
 					<Nav className='ml-auto'>
 						<NavLink to='/signup' className='nav-link'>
-							Sign Up
+							Sign up
 						</NavLink>
 					</Nav>
 				</Container>

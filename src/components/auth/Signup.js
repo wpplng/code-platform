@@ -77,6 +77,7 @@ const Signup = () => {
 						</Form.Group>
 
 						<Button
+							className='custom-button'
 							variant='secondary'
 							type='submit'
 							disabled={loading}
