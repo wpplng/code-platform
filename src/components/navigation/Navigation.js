@@ -14,8 +14,8 @@ const Navigation = () => {
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
 
 					<Nav className='ml-auto'>
-						<NavLink to='/signup' className='nav-link'>
-							Sign up
+						<NavLink to='/login' className='nav-link'>
+							Log in
 						</NavLink>
 					</Nav>
 				</Container>

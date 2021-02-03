@@ -39,9 +39,7 @@ const Signup = () => {
 		<>
 			<Row className='justify-content-center'>
 				<Col xs={12} md={6} lg={4}>
-					<h4 className='text-center my-3'>
-						Sign up and get started!
-					</h4>
+					<h3 className='my-4'>Sign up and get started!</h3>
 
 					{error && <Alert variant='danger'>{error}</Alert>}
 
@@ -77,7 +75,9 @@ const Signup = () => {
 						</Form.Group>
 
 						<Button
-							className='custom-button'
+							className='custom-button mt-4'
+							size='lg'
+							block
 							variant='secondary'
 							type='submit'
 							disabled={loading}

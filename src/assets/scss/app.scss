@@ -17,6 +17,14 @@ $Civista-Grays---Hex-Codes-5-hex: #3b444d;
 
 body {
 	background-color: $Civista-Grays---Hex-Codes-2-hex;
+
+	.container a {
+		color: $Civista-Grays---Hex-Codes-4-hex;
+	}
+
+	.container a:hover {
+		color: $Civista-Grays---Hex-Codes-5-hex;
+	}
 }
 
 #nav {
@@ -34,4 +42,10 @@ body {
 .custom-button {
 	background-color: $Civista-Grays---Hex-Codes-4-hex;
 	border-color: $Civista-Grays---Hex-Codes-4-hex;
+	box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.25);
+}
+
+.custom-button:hover {
+	background-color: $Civista-Grays---Hex-Codes-5-hex;
+	border-color: $Civista-Grays---Hex-Codes-5-hex;
 }
