@@ -10,6 +10,8 @@ import Signup from './components/auth/Signup';
 import ResetPassword from './components/auth/ResetPassword';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
+import Profile from './components/profile/Profile';
+import AuthRoute from './components/auth/AuthRoute';
 
 const App = () => {
 	return (
@@ -38,6 +40,10 @@ const App = () => {
 						<Route path='/reset-password'>
 							<ResetPassword />
 						</Route>
+
+						<AuthRoute path='/profile'>
+							<Profile />
+						</AuthRoute>
 
 						<Route path='*' element={<NotFound />} />
 					</Routes>

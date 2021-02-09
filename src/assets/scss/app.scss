@@ -48,4 +48,7 @@ body {
 .custom-button:hover {
 	background-color: $Civista-Grays---Hex-Codes-5-hex;
 	border-color: $Civista-Grays---Hex-Codes-5-hex;
+	box-shadow: 0 14px 26px -12px rgba(180, 184, 183, 0.42),
+		0 4px 23px 0 rgba(0, 0, 0, 0.12),
+		0 8px 10px -5px rgba(149, 153, 152, 0.2);
 }
