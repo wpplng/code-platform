@@ -19,7 +19,10 @@ const Navigation = () => {
 						<Nav className='ml-auto'>
 							{currentUser ? (
 								<NavDropdown
-									title={currentUser.email}
+									title={
+										currentUser.displayName ||
+										currentUser.email
+									}
 									id='collasible-nav-dropdown'
 								>
 									<NavLink

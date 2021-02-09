@@ -12,6 +12,7 @@ import Home from './components/Home';
 import NotFound from './components/NotFound';
 import Profile from './components/profile/Profile';
 import AuthRoute from './components/auth/AuthRoute';
+import Username from './components/profile/Username';
 
 const App = () => {
 	return (
@@ -41,9 +42,15 @@ const App = () => {
 							<ResetPassword />
 						</Route>
 
-						<AuthRoute path='/profile'>
-							<Profile />
-						</AuthRoute>
+						<Route path='/profile'>
+							<AuthRoute path='/'>
+								<Profile />
+							</AuthRoute>
+
+							<AuthRoute path='/username'>
+								<Username />
+							</AuthRoute>
+						</Route>
 
 						<Route path='*' element={<NotFound />} />
 					</Routes>

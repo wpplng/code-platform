@@ -4,7 +4,9 @@ import { useAuth } from '../../contexts/AuthContext';
 const Profile = () => {
 	const { currentUser } = useAuth();
 
-	return <div>Profile for: {currentUser.email}</div>;
+	return (
+		<div>Profile for: {currentUser.displayName || currentUser.email}</div>
+	);
 };
 
 export default Profile;
