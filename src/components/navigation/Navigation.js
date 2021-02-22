@@ -17,6 +17,9 @@ const Navigation = () => {
 
 					<Navbar.Collapse id='responsive-navbar-nav'>
 						<Nav className='ml-auto'>
+							<NavLink to='/languages' className='nav-link'>
+								Languages
+							</NavLink>
 							{currentUser ? (
 								<NavDropdown
 									title={

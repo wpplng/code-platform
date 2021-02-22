@@ -13,6 +13,7 @@ import NotFound from './components/NotFound';
 import Profile from './components/profile/Profile';
 import AuthRoute from './components/auth/AuthRoute';
 import Username from './components/profile/Username';
+import Languages from './components/code/Languages';
 
 const App = () => {
 	return (
@@ -40,6 +41,10 @@ const App = () => {
 
 						<Route path='/reset-password'>
 							<ResetPassword />
+						</Route>
+
+						<Route path='/languages'>
+							<Languages />
 						</Route>
 
 						<Route path='/profile'>
