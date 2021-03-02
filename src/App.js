@@ -14,6 +14,7 @@ import Profile from './components/profile/Profile';
 import AuthRoute from './components/auth/AuthRoute';
 import Username from './components/profile/Username';
 import Languages from './components/code/Languages';
+import Language from './components/code/Language';
 
 const App = () => {
 	return (
@@ -44,7 +45,13 @@ const App = () => {
 						</Route>
 
 						<Route path='/languages'>
-							<Languages />
+							<Route path='/'>
+								<Languages />
+							</Route>
+
+							<Route path='/:languageId'>
+								<Language />
+							</Route>
 						</Route>
 
 						<Route path='/profile'>

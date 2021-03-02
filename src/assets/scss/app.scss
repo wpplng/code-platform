@@ -66,3 +66,9 @@ body {
 	font-family: 'Roboto Mono', monospace;
 	border-radius: 1rem;
 }
+
+.language-card:hover {
+	.language-img {
+		opacity: 1;
+	}
+}
