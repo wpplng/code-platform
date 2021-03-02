@@ -8,8 +8,9 @@ const LanguagesGrid = ({ languages }) => {
 			<Row>
 				{languages.map((item) => (
 					<Col sm={6} md={6} lg={4} key={item.id}>
-						<Card className='mb-3 bg-dark text-white'>
+						<Card className='mb-3 text-white language-card'>
 							<Card.Img
+								className='language-img'
 								variant='top'
 								src={code}
 								alt='Code image'

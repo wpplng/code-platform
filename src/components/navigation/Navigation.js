@@ -5,6 +5,7 @@ import { useAuth } from '../../contexts/AuthContext';
 
 const Navigation = () => {
 	const { currentUser } = useAuth();
+
 	return (
 		<>
 			<Navbar id='nav' variant='dark' expand='md'>
