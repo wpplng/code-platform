@@ -8,7 +8,7 @@ const Languages = () => {
 
 	return (
 		<div>
-			<h2 className='mb-4 text-center'>
+			<h2 className='my-4 text-center'>
 				Select a language to learn more
 			</h2>
 

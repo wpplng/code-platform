@@ -6,7 +6,7 @@ import code from '../../assets/images/code.jpg';
 const LanguagesGrid = ({ languages }) => {
 	return (
 		<>
-			<Row>
+			<Row className='pt-4'>
 				{languages.map((item) => (
 					<Col sm={6} md={6} lg={4} key={item.id}>
 						<Link to={`/languages/${item.id}`}>
