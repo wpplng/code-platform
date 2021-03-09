@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Dropdown } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import useLanguages from '../../hooks/useLanguages';
@@ -12,7 +12,7 @@ const Navigation = () => {
 		<>
 			<Navbar id='nav' variant='dark' expand='md'>
 				<Container>
-					<Link to='/languages' className='navbar-brand'>
+					<Link to='/' className='navbar-brand'>
 						Code Platform
 					</Link>
 
@@ -24,6 +24,13 @@ const Navigation = () => {
 								title='Languages'
 								id='collasible-nav-dropdown'
 							>
+								<NavLink
+									to={'/languages'}
+									className='dropdown-item font-weight-bold'
+								>
+									All Languages
+								</NavLink>
+								<Dropdown.Divider />
 								{languages.map((item) => (
 									<NavLink
 										key={item.id}
