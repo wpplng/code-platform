@@ -15,6 +15,7 @@ import AuthRoute from './components/auth/AuthRoute';
 import Username from './components/profile/Username';
 import Languages from './components/code/Languages';
 import Language from './components/code/Language';
+import CreateLink from './components/code/CreateLink';
 
 const App = () => {
 	return (
@@ -52,6 +53,10 @@ const App = () => {
 							<Route path='/:languageId'>
 								<Language />
 							</Route>
+
+							<AuthRoute path='/:languageId/create'>
+								<CreateLink />
+							</AuthRoute>
 						</Route>
 
 						<Route path='/profile'>

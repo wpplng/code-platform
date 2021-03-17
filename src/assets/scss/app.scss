@@ -73,3 +73,8 @@ body {
 		opacity: 1;
 	}
 }
+
+.dropdown-item.active,
+.dropdown-item:active {
+	background-color: $Civista-Grays---Hex-Codes-3-hex;
+}

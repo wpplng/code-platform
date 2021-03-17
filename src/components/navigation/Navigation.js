@@ -13,7 +13,7 @@ const Navigation = () => {
 			<Navbar id='nav' expand='md'>
 				<Container>
 					<Link to='/' className='navbar-brand'>
-						Code Platform
+						&lt;/&gt; Code Platform
 					</Link>
 
 					<Navbar.Toggle aria-controls='responsive-navbar-nav' />
