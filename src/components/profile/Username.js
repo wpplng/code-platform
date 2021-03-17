@@ -36,12 +36,15 @@ const Username = () => {
 			{error && <Alert variant='danger'>{error}</Alert>}
 
 			<Row className='justify-content-center'>
-				<Col xs={12} md={6} lg={4}>
-					<h3 className='my-4'>Please select a username</h3>
+				<Col xs={12} md={6} lg={6}>
+					<h3 className='my-4 text-center'>
+						Please select a username
+					</h3>
 					<Form onSubmit={handleSubmit}>
 						<Form.Group id='username'>
 							<Form.Label>Username</Form.Label>
 							<Form.Control
+								size='lg'
 								type='text'
 								ref={usernameRef}
 								required
@@ -56,7 +59,7 @@ const Username = () => {
 							type='submit'
 							disabled={loading}
 						>
-							Select username
+							Select
 						</Button>
 					</Form>
 				</Col>

@@ -38,15 +38,18 @@ const Signup = () => {
 	return (
 		<>
 			<Row className='justify-content-center'>
-				<Col xs={12} md={6} lg={4}>
-					<h3 className='my-4'>Sign up and get started!</h3>
+				<Col xs={12} md={6} lg={6}>
+					<h3 className='my-4 text-center'>
+						Sign up and get started!
+					</h3>
 
 					{error && <Alert variant='danger'>{error}</Alert>}
 
 					<Form onSubmit={handleSubmit}>
 						<Form.Group id='email'>
-							<Form.Label>Email</Form.Label>
+							<Form.Label>Email address</Form.Label>
 							<Form.Control
+								size='lg'
 								type='email'
 								ref={emailRef}
 								required
@@ -57,6 +60,7 @@ const Signup = () => {
 						<Form.Group id='password'>
 							<Form.Label>Password</Form.Label>
 							<Form.Control
+								size='lg'
 								type='password'
 								ref={passwordRef}
 								required
@@ -67,6 +71,7 @@ const Signup = () => {
 						<Form.Group controlId='password-confirmation'>
 							<Form.Label>Confirm password</Form.Label>
 							<Form.Control
+								size='lg'
 								type='password'
 								ref={passwordConfirmationRef}
 								required

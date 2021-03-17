@@ -10,7 +10,7 @@ const Navigation = () => {
 
 	return (
 		<>
-			<Navbar id='nav' variant='dark' expand='md'>
+			<Navbar id='nav' expand='md'>
 				<Container>
 					<Link to='/' className='navbar-brand'>
 						Code Platform
