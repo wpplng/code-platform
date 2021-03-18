@@ -22,6 +22,7 @@ const useLanguage = (languageId) => {
 		const unsubscribe = db
 			.collection('links')
 			.where('language', '==', db.collection('languages').doc(languageId))
+			.orderBy('date', 'desc')
 			.onSnapshot((snapshot) => {
 				setLoading(true);
 				const codeLinks = [];

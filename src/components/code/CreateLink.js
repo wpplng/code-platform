@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { db } from '../../firebase';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -6,12 +6,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 const CreateLink = () => {
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
-	const [type, setType] = useState('Video tutorial');
-	const [url, setUrl] = useState('');
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const navigate = useNavigate();
+	const typeRef = useRef();
+	const urlRef = useRef();
 	const { languageId } = useParams();
+	const navigate = useNavigate();
 
 	const handleTitleChange = (e) => {
 		setTitle(e.target.value);
@@ -21,24 +21,12 @@ const CreateLink = () => {
 		setDescription(e.target.value);
 	};
 
-	const handleTypeChange = (e) => {
-		setType(e.target.value);
-	};
-
-	const handleUrlChange = (e) => {
-		setUrl(e.target.value);
-	};
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
 		const time = Date.now();
-		console.log('languageid', languageId);
 
 		if (title.length < 3 || description.length < 3) {
-			return;
-		}
-
-		if (title.length < 3) {
 			return;
 		}
 
@@ -46,15 +34,18 @@ const CreateLink = () => {
 		setLoading(true);
 
 		try {
-			await db.collection('links').add({
+			const link = {
 				title,
 				description,
 				language: db.collection('languages').doc(languageId),
-				type,
-				url,
+				type: typeRef.current.value,
+				url: urlRef.current.value,
 				date: time,
-			});
-			navigate(`/languages`);
+			};
+
+			await db.collection('links').add(link);
+
+			navigate(`/languages/${languageId}`);
 		} catch (e) {
 			console.error(e.message);
 			setError(
@@ -69,11 +60,12 @@ const CreateLink = () => {
 			<Row className='justify-content-center'>
 				<Col xs={12} md={6} lg={6}>
 					<h3 className='my-4 text-center'>Add a new link</h3>
-					<Alert variant='light'>
+					<Alert className='alert-light'>
 						<p>
 							If you have a pro tip and want to help others
 							learning to code, please add that link below.
 						</p>
+						<hr />
 						<p>
 							Please add a title to your link, a short
 							description, choose what type it is and enter the
@@ -119,19 +111,12 @@ const CreateLink = () => {
 
 						<Form.Group controlId='type'>
 							<Form.Label>Type</Form.Label>
-							<Form.Control
-								onChange={handleTypeChange}
-								as='select'
-							>
-								<option value='Video tutorial'>
-									Video tutorial
-								</option>
+							<Form.Control ref={typeRef} as='select'>
+								<option value='Tutorial'>Tutorial</option>
 								<option value='Online course'>
 									Online course
 								</option>
-								<option value='Text tutorial'>
-									Text tutorial
-								</option>
+								<option value='Article'>Article</option>
 							</Form.Control>
 						</Form.Group>
 
@@ -139,8 +124,7 @@ const CreateLink = () => {
 							<Form.Label>Url</Form.Label>
 							<Form.Control
 								type='url'
-								onChange={handleUrlChange}
-								value={url}
+								ref={urlRef}
 								required
 								placeholder='https://example.com'
 								pattern='https://.*'
