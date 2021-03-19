@@ -41,6 +41,7 @@ const CreateLink = () => {
 				type: typeRef.current.value,
 				url: urlRef.current.value,
 				date: time,
+				users: [],
 			};
 
 			await db.collection('links').add(link);
