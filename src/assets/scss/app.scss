@@ -20,11 +20,9 @@ $Civista-Grays---Hex-Codes-5-hex: #3b444d;
 body {
 	background-color: $Civista-Grays---Hex-Codes-1-hex;
 	color: $Civista-Grays---Hex-Codes-5-hex;
-
 	.container a {
 		color: $Civista-Grays---Hex-Codes-4-hex;
 	}
-
 	.container a:hover {
 		color: $Civista-Grays---Hex-Codes-5-hex;
 	}
@@ -35,6 +33,8 @@ body {
 	h5,
 	h6 {
 		font-family: 'Roboto Mono', monospace;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid $Civista-Grays---Hex-Codes-3-hex;
 	}
 }
 
@@ -68,16 +68,23 @@ body {
 .language-img {
 	opacity: 0.9;
 	border-radius: 0.5rem;
+	box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.25);
 }
 
 .language-card {
 	font-family: 'Roboto Mono', monospace;
 	border-radius: 0.5rem;
+	h3 {
+		border-bottom: 5px solid #edcb4e;
+	}
 }
 
 .language-card:hover {
 	.language-img {
 		opacity: 1;
+		box-shadow: 0 14px 26px -12px rgba(180, 184, 183, 0.42),
+			0 4px 23px 0 rgba(0, 0, 0, 0.12),
+			0 8px 10px -5px rgba(149, 153, 152, 0.2);
 	}
 }
 
