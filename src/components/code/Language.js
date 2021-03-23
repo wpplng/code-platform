@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import useLanguage from '../../hooks/useLanguage';
 import { Spinner } from 'react-bootstrap';
-import LinksGrid from './LinksGrid';
+import Links from './Links';
 import { useAuth } from '../../contexts/AuthContext';
 
 const Language = () => {
@@ -21,7 +21,7 @@ const Language = () => {
 					<span className='sr-only'>Loading...</span>
 				</Spinner>
 			) : (
-				<LinksGrid links={links} />
+				<Links links={links} />
 			)}
 
 			{currentUser && (

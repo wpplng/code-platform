@@ -20,7 +20,7 @@ const Login = () => {
 		try {
 			setLoading(true);
 			await login(emailRef.current.value, passwordRef.current.value);
-			navigate('/');
+			navigate('/profile');
 		} catch (e) {
 			setError(
 				'An error occured when trying to login. Please try again.'

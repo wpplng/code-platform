@@ -20,7 +20,8 @@ const LinksGrid = ({ links }) => {
 					});
 			});
 		}
-	}, [currentUser.uid, selectedLinks]);
+		// eslint-disable-next-line
+	}, [selectedLinks]);
 
 	const getDate = (linkDate) => {
 		const date = new Date(linkDate).toLocaleDateString();
@@ -44,7 +45,7 @@ const LinksGrid = ({ links }) => {
 	};
 
 	return (
-		<Row className='my-3 justify-content-center'>
+		<Row className='my-3'>
 			{links.map((link) => (
 				<Col xs={12} md={6} lg={4} className='mt-3' key={link.id}>
 					<Card className='h-100 link-card'>
