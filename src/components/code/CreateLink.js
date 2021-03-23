@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { db } from '../../firebase';
 import { useNavigate, useParams } from 'react-router-dom';
+import useLanguage from '../../hooks/useLanguage';
 
 const CreateLink = () => {
 	const [title, setTitle] = useState('');
@@ -12,6 +13,7 @@ const CreateLink = () => {
 	const urlRef = useRef();
 	const { languageId } = useParams();
 	const navigate = useNavigate();
+	const { language } = useLanguage(languageId);
 
 	const handleTitleChange = (e) => {
 		setTitle(e.target.value);
@@ -60,7 +62,12 @@ const CreateLink = () => {
 		<>
 			<Row className='justify-content-center'>
 				<Col xs={12} md={6} lg={6}>
-					<h3 className='my-4 text-center'>Add a new link</h3>
+					{language && (
+						<h3 className='my-4 text-center'>
+							Add a new link to {language.language}
+						</h3>
+					)}
+
 					<Alert className='alert-light'>
 						<p>
 							If you have a pro tip and want to help others

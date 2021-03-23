@@ -35,7 +35,7 @@ const Username = () => {
 		<>
 			{error && <Alert variant='danger'>{error}</Alert>}
 
-			<Row className='justify-content-center'>
+			<Row className='justify-content-center custom-form'>
 				<Col xs={12} md={6} lg={6}>
 					<h3 className='my-4 text-center'>
 						Please select a username

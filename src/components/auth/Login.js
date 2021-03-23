@@ -31,7 +31,7 @@ const Login = () => {
 
 	return (
 		<>
-			<Row className='justify-content-center'>
+			<Row className='justify-content-center custom-form'>
 				<Col xs={12} md={6} lg={6}>
 					<h3 className='my-4 text-center'>Log in to your account</h3>
 

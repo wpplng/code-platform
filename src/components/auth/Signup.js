@@ -28,8 +28,9 @@ const Signup = () => {
 		try {
 			setLoading(true);
 			await signup(emailRef.current.value, passwordRef.current.value);
-			navigate('/');
+			navigate('/profile/username');
 		} catch (e) {
+			console.log(e.message);
 			setError(e.message);
 			setLoading(false);
 		}
@@ -37,7 +38,7 @@ const Signup = () => {
 
 	return (
 		<>
-			<Row className='justify-content-center'>
+			<Row className='justify-content-center custom-form'>
 				<Col xs={12} md={6} lg={6}>
 					<h3 className='my-4 text-center'>
 						Sign up and get started!
