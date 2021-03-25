@@ -121,3 +121,24 @@ body {
 	border-color: #edcb4e60;
 	color: $Civista-Grays---Hex-Codes-4-hex;
 }
+
+.home-languages {
+	h4 {
+		border-bottom: 0;
+	}
+	.card-header {
+		background-color: $Civista-Grays---Hex-Codes-2-hex;
+		color: $Civista-Grays---Hex-Codes-5-hex;
+		text-align: center;
+	}
+	.card-header:hover {
+		background-color: #edcb4e40;
+	}
+}
+
+.home-img {
+	opacity: 0.9;
+	box-shadow: 0 14px 26px -12px rgba(180, 184, 183, 0.42),
+		0 4px 23px 0 rgba(0, 0, 0, 0.12),
+		0 8px 10px -5px rgba(149, 153, 152, 0.2);
+}
