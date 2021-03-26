@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import firebase from 'firebase/app';
 import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
@@ -28,20 +30,16 @@ const LinksGrid = ({ links }) => {
 		return date;
 	};
 
-	const handleSelectLink = (e, link) => {
+	const handleSelectLink = (link) => {
 		let userLinks;
 
-		console.log(e.target.checked);
-
-		if (e.target.checked) {
-			if (selectedLinks.length === 0) {
-				userLinks = [];
-			} else {
-				userLinks = [...selectedLinks];
-			}
-			userLinks.push(link);
-			setSelectedLinks(userLinks);
+		if (selectedLinks.length === 0) {
+			userLinks = [];
+		} else {
+			userLinks = [...selectedLinks];
 		}
+		userLinks.push(link);
+		setSelectedLinks(userLinks);
 	};
 
 	return (
@@ -54,7 +52,7 @@ const LinksGrid = ({ links }) => {
 						</Card.Header>
 						<Card.Body>
 							<Card.Title as='h4'>{link.title}</Card.Title>
-							<Card.Text className='text-muted'>
+							<Card.Text className='text-muted small'>
 								Added {getDate(link.date)}
 							</Card.Text>
 							<Card.Text>{link.description}</Card.Text>
@@ -62,25 +60,27 @@ const LinksGrid = ({ links }) => {
 							{currentUser &&
 								!link.users.includes(currentUser.uid) && (
 									<Card.Text>
-										<input
-											type='checkbox'
-											name='select-link'
-											id={link.id}
-											onClick={(e) => {
-												handleSelectLink(e, link);
+										<FontAwesomeIcon
+											className='add-icon'
+											icon={faPlus}
+											onClick={() => {
+												handleSelectLink(link);
 											}}
 										/>
-										<label
-											className='ml-2 text-muted small'
-											htmlFor={link.id}
-										>
-											Select to profile
-										</label>
+										<span className='ml-2 text-muted small'>
+											Add to profile
+										</span>
 									</Card.Text>
 								)}
 						</Card.Body>
 						<Card.Footer>
-							<a href={link.url}>Go to website -&gt;</a>
+							<a href={link.url}>
+								Visit website
+								<FontAwesomeIcon
+									className='ml-2'
+									icon={faExternalLinkAlt}
+								/>
+							</a>
 						</Card.Footer>
 					</Card>
 				</Col>

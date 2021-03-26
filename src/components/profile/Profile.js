@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, Spinner } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
 
@@ -59,13 +61,19 @@ const Profile = () => {
 									<Card.Title as='h4'>
 										{link.title}
 									</Card.Title>
-									<Card.Text className='text-muted'>
+									<Card.Text className='text-muted small'>
 										Added {getDate(link.date)}
 									</Card.Text>
 									<Card.Text>{link.description}</Card.Text>
 								</Card.Body>
 								<Card.Footer>
-									<a href={link.url}>Go to website -&gt;</a>
+									<a href={link.url}>
+										Visit website
+										<FontAwesomeIcon
+											className='ml-2'
+											icon={faExternalLinkAlt}
+										/>
+									</a>
 								</Card.Footer>
 							</Card>
 						</Col>
