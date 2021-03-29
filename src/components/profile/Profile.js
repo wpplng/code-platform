@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Card, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
+import firebase from 'firebase/app';
 import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
 
@@ -9,8 +10,21 @@ const Profile = () => {
 	const { currentUser } = useAuth();
 	const [userLinks, setUserLinks] = useState([]);
 	const [loading, setLoading] = useState(true);
+	const [completedLinks, setCompletedLinks] = useState([]);
 
 	useEffect(() => {
+		if (completedLinks.length > 0) {
+			completedLinks.forEach((linkItem) => {
+				db.collection('links')
+					.doc(linkItem.id)
+					.update({
+						usersCompleted: firebase.firestore.FieldValue.arrayUnion(
+							currentUser.uid
+						),
+					});
+			});
+		}
+
 		return db
 			.collection('links')
 			.get()
@@ -25,14 +39,24 @@ const Profile = () => {
 				setUserLinks(snapshotLinks);
 				setLoading(false);
 			});
-	}, [currentUser.uid]);
+	}, [completedLinks, currentUser.uid]);
 
 	const getDate = (linkDate) => {
 		const date = new Date(linkDate).toLocaleDateString();
 		return date;
 	};
 
-	console.log(userLinks);
+	const handleCompleted = (link) => {
+		let userCompletedLinks;
+
+		if (completedLinks.length === 0) {
+			userCompletedLinks = [];
+		} else {
+			userCompletedLinks = [...completedLinks];
+		}
+		userCompletedLinks.push(link);
+		setCompletedLinks(userCompletedLinks);
+	};
 
 	return (
 		<>
@@ -48,8 +72,8 @@ const Profile = () => {
 					{userLinks.map((link) => (
 						<Col
 							xs={12}
-							md={4}
-							lg={3}
+							md={6}
+							lg={4}
 							className='mt-3'
 							key={link.id}
 						>
@@ -65,6 +89,29 @@ const Profile = () => {
 										Added {getDate(link.date)}
 									</Card.Text>
 									<Card.Text>{link.description}</Card.Text>
+									<Card.Text>
+										{!link.usersCompleted.includes(
+											currentUser.uid
+										) ? (
+											<>
+												<FontAwesomeIcon
+													className='add-icon not-completed'
+													icon={faCheck}
+													onClick={() =>
+														handleCompleted(link)
+													}
+												/>
+												<span className='ml-2 text-muted small'>
+													Check if completed
+												</span>
+											</>
+										) : (
+											<FontAwesomeIcon
+												className='completed'
+												icon={faCheck}
+											/>
+										)}
+									</Card.Text>
 								</Card.Body>
 								<Card.Footer>
 									<a href={link.url}>
