@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { db } from '../../firebase';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import useLanguage from '../../hooks/useLanguage';
 
 const CreateLink = () => {
@@ -74,7 +74,6 @@ const CreateLink = () => {
 							If you have a pro tip and want to help others
 							learning to code, please add that link below.
 						</p>
-						<hr />
 						<p>
 							Please add a title to your link, a short
 							description, choose what type it is and enter the
@@ -151,6 +150,17 @@ const CreateLink = () => {
 							Create Link
 						</Button>
 					</Form>
+					{language && (
+						<div className='text-center mt-4'>
+							<span>Changed your mind? </span>
+							<Link
+								to={`/languages/${languageId}`}
+								className='link'
+							>
+								Back to {language.language}
+							</Link>
+						</div>
+					)}
 				</Col>
 			</Row>
 		</>

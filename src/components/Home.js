@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { CardGroup, Card, Spinner, Row, Col } from 'react-bootstrap';
+import { Card, Spinner, Row, Col } from 'react-bootstrap';
 import useLanguages from '../hooks/useLanguages';
-import coding from '../assets/images/coding.jpg';
-import codetext from '../assets/images/codetext.jpg';
-import computer from '../assets/images/computer.jpg';
-import text from '../assets/images/text.jpg';
+import ImageGroup from './ImageGroup';
 
 const Home = () => {
 	const { languages, loading } = useLanguages();
@@ -24,40 +21,7 @@ const Home = () => {
 				mjukvaror som Aldus PageMaker
 			</p>
 
-			<CardGroup className='home-card py-4'>
-				<Card>
-					<Card.Img
-						className='home-img'
-						variant='top'
-						src={coding}
-						alt='Code image'
-					/>
-				</Card>
-				<Card>
-					<Card.Img
-						className='home-img'
-						variant='top'
-						src={computer}
-						alt='Computer image'
-					/>
-				</Card>
-				<Card>
-					<Card.Img
-						className='home-img'
-						variant='top'
-						src={codetext}
-						alt='Code image'
-					/>
-				</Card>
-				<Card>
-					<Card.Img
-						className='home-img'
-						variant='top'
-						src={text}
-						alt='Telephone with text'
-					/>
-				</Card>
-			</CardGroup>
+			<ImageGroup />
 
 			{loading ? (
 				<Spinner animation='border' role='status'>

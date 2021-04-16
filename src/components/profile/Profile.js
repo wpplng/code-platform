@@ -106,10 +106,15 @@ const Profile = () => {
 												</span>
 											</>
 										) : (
-											<FontAwesomeIcon
-												className='completed'
-												icon={faCheck}
-											/>
+											<>
+												<FontAwesomeIcon
+													className='completed'
+													icon={faCheck}
+												/>
+												<span className='ml-2 text-muted small'>
+													Completed!
+												</span>
+											</>
 										)}
 									</Card.Text>
 								</Card.Body>
