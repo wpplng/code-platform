@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navbar, Nav, Container, NavDropdown, Dropdown } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserNinja } from '@fortawesome/free-solid-svg-icons';
-import { useAuth } from '../../contexts/AuthContext';
+import { Link, NavLink } from 'react-router-dom';
 import useLanguages from '../../hooks/useLanguages';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Navigation = () => {
 	const { currentUser } = useAuth();

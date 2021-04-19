@@ -47,6 +47,7 @@ const AuthContextProvider = (props) => {
 		return unsubscribe;
 	}, []);
 
+	// values for auth context
 	const contextValues = {
 		currentUser,
 		loading,

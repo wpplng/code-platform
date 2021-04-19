@@ -21,6 +21,7 @@ const ResetPassword = () => {
 			await resetPassword(emailRef.current.value);
 			navigate('/login');
 		} catch (e) {
+			// catch possible errrors and set error message
 			setError(
 				'Something went wrong. Please check that the email address is correct.'
 			);

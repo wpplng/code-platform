@@ -26,6 +26,7 @@ const Username = () => {
 			setLoading(false);
 			navigate('/');
 		} catch (e) {
+			// catch possible errrors and set error message
 			setError('Error when updating username. Please try again.');
 			setLoading(false);
 		}

@@ -6,6 +6,7 @@ const useLanguage = (languageId) => {
 	const [links, setLinks] = useState([]);
 	const [loading, setLoading] = useState(true);
 
+	// get language from db
 	useEffect(() => {
 		db.collection('languages')
 			.doc(languageId)
@@ -18,6 +19,7 @@ const useLanguage = (languageId) => {
 			});
 	}, [languageId]);
 
+	// listen to changes in links in firestore
 	useEffect(() => {
 		const unsubscribe = db
 			.collection('links')

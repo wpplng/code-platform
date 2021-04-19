@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Row, Col, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import code from '../../assets/images/code.jpg';
 
 const LanguagesGrid = ({ languages }) => {

@@ -30,7 +30,8 @@ const Signup = () => {
 			await signup(emailRef.current.value, passwordRef.current.value);
 			navigate('/profile/username');
 		} catch (e) {
-			console.log(e.message);
+			// catch possible errrors and set error message
+			console.error(e.message);
 			setError(e.message);
 			setLoading(false);
 		}

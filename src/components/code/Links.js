@@ -3,13 +3,14 @@ import { Row, Col, Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
 import firebase from 'firebase/app';
-import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
+import { useAuth } from '../../contexts/AuthContext';
 
 const LinksGrid = ({ links }) => {
 	const { currentUser } = useAuth();
 	const [selectedLinks, setSelectedLinks] = useState([]);
 
+	// update users for selected links in db
 	useEffect(() => {
 		if (selectedLinks.length > 0) {
 			selectedLinks.forEach((linkItem) => {
@@ -25,11 +26,13 @@ const LinksGrid = ({ links }) => {
 		// eslint-disable-next-line
 	}, [selectedLinks]);
 
+	// create date from timestamp
 	const getDate = (linkDate) => {
 		const date = new Date(linkDate).toLocaleDateString();
 		return date;
 	};
 
+	// update list of selected links for user
 	const handleSelectLink = (link) => {
 		let userLinks;
 

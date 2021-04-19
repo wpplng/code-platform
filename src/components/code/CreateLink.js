@@ -15,14 +15,17 @@ const CreateLink = () => {
 	const navigate = useNavigate();
 	const { language } = useLanguage(languageId);
 
+	// set title
 	const handleTitleChange = (e) => {
 		setTitle(e.target.value);
 	};
 
+	// set description
 	const handleDescChange = (e) => {
 		setDescription(e.target.value);
 	};
 
+	// submit - create link
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -35,6 +38,7 @@ const CreateLink = () => {
 		setError(false);
 		setLoading(true);
 
+		// add link to db and navigate to the language
 		try {
 			const link = {
 				title,
@@ -51,6 +55,7 @@ const CreateLink = () => {
 
 			navigate(`/languages/${languageId}`);
 		} catch (e) {
+			// catch possible errrors and set error message
 			console.error(e.message);
 			setError(
 				'An error occured when trying to create the link. Please try again.'
