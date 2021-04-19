@@ -1,51 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Row, Col, Card, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
-import firebase from 'firebase/app';
 import { useAuth } from '../../contexts/AuthContext';
-import { db } from '../../firebase';
+import useUserLinks from '../../hooks/useUserLinks';
 
 const Profile = () => {
 	const { currentUser } = useAuth();
-	const [userLinks, setUserLinks] = useState([]);
-	const [loading, setLoading] = useState(true);
 	const [completedLinks, setCompletedLinks] = useState([]);
+	const { userLinks, loading } = useUserLinks(completedLinks);
 
-	useEffect(() => {
-		if (completedLinks.length > 0) {
-			completedLinks.forEach((linkItem) => {
-				db.collection('links')
-					.doc(linkItem.id)
-					.update({
-						usersCompleted: firebase.firestore.FieldValue.arrayUnion(
-							currentUser.uid
-						),
-					});
-			});
-		}
-
-		return db
-			.collection('links')
-			.get()
-			.then((querySnapshot) => {
-				setLoading(true);
-				const snapshotLinks = [];
-				querySnapshot.forEach((doc) => {
-					if (doc.data().users.includes(currentUser.uid)) {
-						snapshotLinks.push({ id: doc.id, ...doc.data() });
-					}
-				});
-				setUserLinks(snapshotLinks);
-				setLoading(false);
-			});
-	}, [completedLinks, currentUser.uid]);
-
+	// create date from timestamp
 	const getDate = (linkDate) => {
 		const date = new Date(linkDate).toLocaleDateString();
 		return date;
 	};
 
+	// update list of completed links for user
 	const handleCompleted = (link) => {
 		let userCompletedLinks;
 
@@ -68,69 +39,83 @@ const Profile = () => {
 					<span className='sr-only'>Loading...</span>
 				</Spinner>
 			) : userLinks.length > 0 ? (
-				<Row className='my-3'>
-					{userLinks.map((link) => (
-						<Col
-							xs={12}
-							md={6}
-							lg={4}
-							className='mt-3'
-							key={link.id}
-						>
-							<Card className='h-100 link-card'>
-								<Card.Header className='link-header' as='h5'>
-									{link.type}
-								</Card.Header>
-								<Card.Body>
-									<Card.Title as='h4'>
-										{link.title}
-									</Card.Title>
-									<Card.Text className='text-muted small'>
-										Added {getDate(link.date)}
-									</Card.Text>
-									<Card.Text>{link.description}</Card.Text>
-									<Card.Text>
-										{!link.usersCompleted.includes(
-											currentUser.uid
-										) ? (
-											<>
-												<FontAwesomeIcon
-													className='add-icon not-completed'
-													icon={faCheck}
-													onClick={() =>
-														handleCompleted(link)
-													}
-												/>
-												<span className='ml-2 text-muted small'>
-													Check if completed
-												</span>
-											</>
-										) : (
-											<>
-												<FontAwesomeIcon
-													className='completed'
-													icon={faCheck}
-												/>
-												<span className='ml-2 text-muted small'>
-													Completed!
-												</span>
-											</>
-										)}
-									</Card.Text>
-								</Card.Body>
-								<Card.Footer>
-									<a href={link.url}>
-										Visit website
-										<FontAwesomeIcon
-											className='ml-2'
-											icon={faExternalLinkAlt}
-										/>
-									</a>
-								</Card.Footer>
-							</Card>
-						</Col>
-					))}
-				</Row>
+				<>
+					<p>
+						Here are the links you have saved. You can mark them as
+						completed when you have finished the tutorail, read the
+						article and so on. Happy learning!
+					</p>
+					<Row className='my-3'>
+						{userLinks.map((link) => (
+							<Col
+								xs={12}
+								md={6}
+								lg={4}
+								className='mt-3'
+								key={link.id}
+							>
+								<Card className='h-100 link-card'>
+									<Card.Header
+										className='link-header'
+										as='h5'
+									>
+										{link.type}
+									</Card.Header>
+									<Card.Body>
+										<Card.Title as='h4'>
+											{link.title}
+										</Card.Title>
+										<Card.Text className='text-muted small'>
+											Added {getDate(link.date)}
+										</Card.Text>
+										<Card.Text>
+											{link.description}
+										</Card.Text>
+										<Card.Text>
+											{!link.usersCompleted.includes(
+												currentUser.uid
+											) ? (
+												<>
+													<FontAwesomeIcon
+														className='add-icon not-completed'
+														icon={faCheck}
+														onClick={() =>
+															handleCompleted(
+																link
+															)
+														}
+													/>
+													<span className='ml-2 text-muted small'>
+														Check if completed
+													</span>
+												</>
+											) : (
+												<>
+													<FontAwesomeIcon
+														className='completed'
+														icon={faCheck}
+													/>
+													<span className='ml-2 text-muted small'>
+														Completed!
+													</span>
+												</>
+											)}
+										</Card.Text>
+									</Card.Body>
+									<Card.Footer>
+										<a href={link.url}>
+											Visit website
+											<FontAwesomeIcon
+												className='ml-2'
+												icon={faExternalLinkAlt}
+											/>
+										</a>
+									</Card.Footer>
+								</Card>
+							</Col>
+						))}
+					</Row>
+				</>
 			) : (
 				<p>
 					Start browsing the content and add things you like and want
