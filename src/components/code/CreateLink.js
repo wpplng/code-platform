@@ -66,108 +66,110 @@ const CreateLink = () => {
 
 	return (
 		<>
-			<Row className='justify-content-center'>
-				<Col xs={12} md={6} lg={6}>
-					{language && (
-						<h3 className='my-4 text-center'>
-							Add a new link to {language.language}
-						</h3>
-					)}
+			{language && language.language && (
+				<Row className='justify-content-center'>
+					<Col xs={12} md={6} lg={6}>
+						{language && (
+							<h3 className='my-4 text-center'>
+								Add a new link to {language.language}
+							</h3>
+						)}
 
-					<Alert className='alert-light'>
-						<p>
-							If you have a pro tip and want to help others
-							learning to code, please add that link below.
-						</p>
-						<p>
-							Please add a title to your link, a short
-							description, choose what type it is and enter the
-							url.
-						</p>
-					</Alert>
+						<Alert className='alert-light'>
+							<p>
+								If you have a pro tip and want to help others
+								learning to code, please add that link below.
+							</p>
+							<p>
+								Please add a title to your link, a short
+								description, choose what type it is and enter
+								the url.
+							</p>
+						</Alert>
 
-					{error && <Alert variant='danger'>{error}</Alert>}
+						{error && <Alert variant='danger'>{error}</Alert>}
 
-					<Form onSubmit={handleSubmit}>
-						<Form.Group id='title'>
-							<Form.Label>Title</Form.Label>
-							<Form.Control
-								type='title'
-								onChange={handleTitleChange}
-								value={title}
-								required
-								placeholder='Title'
-							/>
-							{title && title.length < 3 && (
-								<Form.Text className='text-muted'>
-									Must contain at least 3 characters
-								</Form.Text>
-							)}
-						</Form.Group>
+						<Form onSubmit={handleSubmit}>
+							<Form.Group id='title'>
+								<Form.Label>Title</Form.Label>
+								<Form.Control
+									type='title'
+									onChange={handleTitleChange}
+									value={title}
+									required
+									placeholder='Title'
+								/>
+								{title && title.length < 3 && (
+									<Form.Text className='text-muted'>
+										Must contain at least 3 characters
+									</Form.Text>
+								)}
+							</Form.Group>
 
-						<Form.Group id='description'>
-							<Form.Label>Description</Form.Label>
-							<Form.Control
-								as='textarea'
-								rows={3}
-								onChange={handleDescChange}
-								value={description}
-								required
-								placeholder='Description'
-							/>
-							{description && description.length < 3 && (
-								<Form.Text className='text-muted'>
-									Must contain at least 3 characters
-								</Form.Text>
-							)}
-						</Form.Group>
+							<Form.Group id='description'>
+								<Form.Label>Description</Form.Label>
+								<Form.Control
+									as='textarea'
+									rows={3}
+									onChange={handleDescChange}
+									value={description}
+									required
+									placeholder='Description'
+								/>
+								{description && description.length < 3 && (
+									<Form.Text className='text-muted'>
+										Must contain at least 3 characters
+									</Form.Text>
+								)}
+							</Form.Group>
 
-						<Form.Group controlId='type'>
-							<Form.Label>Type</Form.Label>
-							<Form.Control ref={typeRef} as='select'>
-								<option value='Tutorial'>Tutorial</option>
-								<option value='Online course'>
-									Online course
-								</option>
-								<option value='Article'>Article</option>
-							</Form.Control>
-						</Form.Group>
+							<Form.Group controlId='type'>
+								<Form.Label>Type</Form.Label>
+								<Form.Control ref={typeRef} as='select'>
+									<option value='Tutorial'>Tutorial</option>
+									<option value='Online course'>
+										Online course
+									</option>
+									<option value='Article'>Article</option>
+								</Form.Control>
+							</Form.Group>
 
-						<Form.Group id='url'>
-							<Form.Label>Url</Form.Label>
-							<Form.Control
-								type='url'
-								ref={urlRef}
-								required
-								placeholder='https://example.com'
-								pattern='https://.*'
-							/>
-						</Form.Group>
+							<Form.Group id='url'>
+								<Form.Label>Url</Form.Label>
+								<Form.Control
+									type='url'
+									ref={urlRef}
+									required
+									placeholder='https://example.com'
+									pattern='https://.*'
+								/>
+							</Form.Group>
 
-						<Button
-							className='custom-button mt-4'
-							size='lg'
-							block
-							variant='secondary'
-							type='submit'
-							disabled={loading}
-						>
-							Create Link
-						</Button>
-					</Form>
-					{language && (
-						<div className='text-center mt-4'>
-							<span>Changed your mind? </span>
-							<Link
-								to={`/languages/${languageId}`}
-								className='link'
+							<Button
+								className='custom-button mt-4'
+								size='lg'
+								block
+								variant='secondary'
+								type='submit'
+								disabled={loading}
 							>
-								Back to {language.language}
-							</Link>
-						</div>
-					)}
-				</Col>
-			</Row>
+								Create Link
+							</Button>
+						</Form>
+						{language && (
+							<div className='text-center mt-4'>
+								<span>Changed your mind? </span>
+								<Link
+									to={`/languages/${languageId}`}
+									className='link'
+								>
+									Back to {language.language}
+								</Link>
+							</div>
+						)}
+					</Col>
+				</Row>
+			)}
 		</>
 	);
 };
