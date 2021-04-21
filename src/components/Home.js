@@ -1,24 +1,31 @@
 import React from 'react';
 import { Card, Spinner, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import useLanguages from '../hooks/useLanguages';
 import ImageGroup from './ImageGroup';
 
 const Home = () => {
 	const { languages, loading } = useLanguages();
+	const { currentUser } = useAuth();
 	return (
 		<>
 			<h2 className='my-4 text-center'>&lt;/&gt; Code Platform</h2>
 			<p className='py-4'>
-				Lorem Ipsum är en utfyllnadstext från tryck- och
-				förlagsindustrin. Lorem ipsum har varit standard ända sedan
-				1500-talet, när en okänd boksättare tog att antal bokstäver och
-				blandade dem för att göra ett provexemplar av en bok. Lorem
-				ipsum har inte bara överlevt fem århundraden, utan även
-				övergången till elektronisk typografi utan större förändringar.
-				Det blev allmänt känt på 1960-talet i samband med lanseringen av
-				Letraset-ark med avsnitt av Lorem Ipsum, och senare med
-				mjukvaror som Aldus PageMaker
+				Welcome to Code Platform. This is the place for those who want
+				to learn to code but doesn't know where to start. We collect all
+				the best sites and links where you go and get all you need to
+				learn to code. You can create your own profile and save the
+				links you like the most and want to check out more and also mark
+				as done when you have finished the course etc. This is also the
+				place for more experienced coders who want to save all your
+				favorite links in one place because you can also create and
+				share your own links.{' '}
+				{!currentUser && (
+					<span>
+						<Link to='/signup'>Sign up here!</Link>
+					</span>
+				)}
 			</p>
 
 			<ImageGroup />

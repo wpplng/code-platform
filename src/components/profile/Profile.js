@@ -96,7 +96,7 @@ const Profile = () => {
 														icon={faCheck}
 													/>
 													<span className='ml-2 text-muted small'>
-														Completed!
+														Completed
 													</span>
 												</>
 											)}
