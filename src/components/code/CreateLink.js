@@ -56,7 +56,6 @@ const CreateLink = () => {
 			navigate(`/languages/${languageId}`);
 		} catch (e) {
 			// catch possible errrors and set error message
-			console.error(e.message);
 			setError(
 				'An error occured when trying to create the link. Please try again.'
 			);

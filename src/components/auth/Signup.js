@@ -31,7 +31,6 @@ const Signup = () => {
 			navigate('/profile/username');
 		} catch (e) {
 			// catch possible errrors and set error message
-			console.error(e.message);
 			setError(e.message);
 			setLoading(false);
 		}
