@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Row, Col, Card, Spinner } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import useUserLinks from '../../hooks/useUserLinks';
 
@@ -122,6 +123,12 @@ const Profile = () => {
 					to check out more to your profile!
 				</p>
 			)}
+			<div className='mt-5 text-center'>
+				<span>Want to </span>
+				<Link to='username' className='link'>
+					update your username?
+				</Link>
+			</div>
 		</>
 	);
 };
